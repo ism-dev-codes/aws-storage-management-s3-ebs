@@ -105,4 +105,106 @@ Para replicar os procedimentos de gerenciamento de armazenamento S3 e backup EBS
 
 ![Modificar Role IAM](Gerenciar%20o%20armazenamento%20%2835%29.png)
 
-- 🤖 16. Confirme a atribuição da IAM Role `S3BucketAccess` à instância
+- 🤖 16. Confirme a atribuição da IAM Role `S3BucketAccess` à instância.
+
+![Atribuir IAM Role](Gerenciar%20o%20armazenamento%20%2837%29.png)
+
+- 🤖 17. Verifique no painel de detalhes do EC2 se a nova perfil IAM está devidamente associado.
+
+![IAM Atualizado](Gerenciar%20o%20armazenamento%20%2836%29.png)
+
+- 🤖 18. Selecione a instância `Command Host` para conexão.
+
+![Command Host EC2](Gerenciar%20o%20armazenamento%20%2838%29.png)
+
+- 🤖 19. Inicie a sessão remota via **EC2 Instance Connect**.
+
+![Conectar EC2](Gerenciar%20o%20armazenamento%20%2839%29.png)
+
+- 🤖 20. Acesse o terminal interativo da instância `Command Host`.
+
+![Terminal EC2](Gerenciar%20o%20armazenamento%20%2840%29.png)
+
+- 🤖 21. Execute `aws ec2 describe-instances` para identificar o `VolumeId` do volume EBS acoplado à instância `Processor`.
+
+![Consulta Volume ID](Gerenciar%20o%20armazenamento%20%2842%29.png)
+
+- 🤖 22. Consulte o `InstanceId` da instância `Processor` utilizando o filtro por tag.
+
+![Consulta Instance ID](Gerenciar%20o%20armazenamento%20%2843%29.png)
+
+- 🤖 23. Interrompa a execução da instância via `aws ec2 stop-instances` para garantir a consistência dos dados do volume.
+
+![Stop Instance CLI](Gerenciar%20o%20armazenamento%20%2846%29.png)
+
+- 🤖 24. Aguarde a confirmação de interrupção com o comando `aws ec2 wait instance-stopped`.
+
+![Wait Stopped CLI](Gerenciar%20o%20armazenamento%20%2849%29.png)
+
+- 🤖 25. Valide no console da AWS o estado da instância alterado para `Stopped`.
+
+![Instância Parada Console](Gerenciar%20o%20armazenamento%20%2850%29.png)
+
+- 🤖 26. Inicie a criação manual do snapshot do volume com `aws ec2 create-snapshot`.
+
+![Create Snapshot CLI](Gerenciar%20o%20armazenamento%20%2851%29.png)
+
+- 🤖 27. Aguarde a conclusão da criação do snapshot com `aws ec2 wait snapshot-completed`.
+
+![Snapshot Concluído CLI](Gerenciar%20o%20armazenamento%20%2854%29.png)
+
+- 🤖 28. Confirme no console do Amazon EC2 a presença do novo EBS Snapshot com status **Completed**.
+
+![Snapshot Console](Gerenciar%20o%20armazenamento%20%2855%29.png)
+
+- 🤖 29. Reinicie a instância EC2 via terminal com `aws ec2 start-instances`.
+
+![Start Instance CLI](Gerenciar%20o%20armazenamento%20%2857%29.png)
+
+- 🤖 30. Verifique no console que a instância retornou ao estado `Running`.
+
+![Instância Running Console](Gerenciar%20o%20armazenamento%20%2858%29.png)
+
+- 🤖 31. Liste os snapshots automatizados gerados pela rotina agendada no script Python via `aws ec2 describe-snapshots`.
+
+![Describe Snapshots Cron](Gerenciar%20o%20armazenamento%20%2859%29.png)
+
+- 🤖 32. Valide no console a lista de múltiplos EBS Snapshots criados pela automação.
+
+![Lista Snapshots Cron Console](Gerenciar%20o%20armazenamento%20%2860%29.png)
+
+- 🤖 33. Desative a agendamento do *Cron job* executando `crontab -r` para concluir a rotina do laboratório.
+
+![Limpeza Crontab](Gerenciar%20o%20armazenamento%20%2862%29.png)
+
+---
+
+## 👨‍💻 Expert
+
+<p>
+    <img 
+      align=left 
+      margin=10 
+      width=80 
+      src="https://avatars.githubusercontent.com/u/105826184?v=4"
+    />
+    <p>&nbsp&nbsp&nbspIsmael Medeiros<br>
+    &nbsp&nbsp&nbsp
+    <a 
+        href="https://github.com/ism-dev-codes">
+        GitHub
+    </a>
+    &nbsp;|&nbsp;
+    <a 
+        href="https://www.linkedin.com/in/ismael-medeiros">
+        LinkedIn
+    </a>
+    &nbsp;|&nbsp;
+    <a 
+        href="https://www.instagram.com/ismaelsmedeiros?igsh=YXA1OW1mNXhkNmVy">
+        Instagram
+    </a>
+    &nbsp;|&nbsp;</p>
+</p>
+<br/><br/>
+<p>
