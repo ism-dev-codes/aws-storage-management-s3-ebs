@@ -179,6 +179,16 @@ Para replicar os procedimentos de gerenciamento de armazenamento S3 e backup EBS
 
 ---
 
+## 🏁 Conclusão
+
+Este laboratório demonstrou de forma prática a aplicação dos princípios de **resiliência, segurança e governança de dados** alinhados ao *AWS Well-Architected Framework*. 
+
+A implementação do versionamento no Amazon S3 provou ser uma camada essencial contra exclusões acidentais ou maliciosas, permitindo a recuperação pontual de objetos sem indisponibilidade de serviço. Já no gerenciamento de armazenamento em bloco, a automação de backups através do Amazon EBS Snapshots combinada com a interrupção controlada da instância EC2 assegurou a consistência de dados antes da criação de imagens de recuperação. 
+
+Com a inclusão de rotinas agendadas (*Cron jobs*), o projeto estabelece uma base sólida para estratégias de **Disaster Recovery (DR)** e continuidade de negócios em infraestruturas de nuvem de qualquer escala.
+
+---
+
 ## 👨‍💻 Expert
 
 <p>
